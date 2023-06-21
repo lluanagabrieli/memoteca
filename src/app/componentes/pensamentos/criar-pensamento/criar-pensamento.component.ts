@@ -9,8 +9,8 @@ export class CriarPensamentoComponent {
 
     pensamento = {
         id: '1',
-        conteudo: '',
-        autoria: '',
+        conteudo: 'Exemplo de pensamento',
+        autoria: 'Exemplo de autoria',
         modelo: 'modelo1'
     }
 
