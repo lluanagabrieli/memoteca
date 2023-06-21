@@ -1,0 +1,19 @@
+<!-- esse componente atua como PAI-->
+<section class="container">
+    <header class="header d-flex">
+        <h2 class="ff-inter">Meu mural</h2>
+        <button routerLink="/criarPensamento" class="botao">Adicionar pensamento</button>
+    </header>
+</section>
+<div class="mural">
+    <div *ngFor="let pensamento of listaPensamentos">
+        <!-- componente filho
+            Property Binding para que a propriedade 'pensamento' do filho com o @Input() receba as informações da variável local 'pensamento' dentro do *ngFor
+        -->
+        <app-pensamento [pensamento]="pensamento"></app-pensamento>
+    </div>
+</div>
+
+<!-- let: variável local
+     listaPensamentos: atributo criado na classe
+-->
