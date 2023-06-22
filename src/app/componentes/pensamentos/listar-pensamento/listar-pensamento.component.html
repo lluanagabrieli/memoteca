@@ -5,7 +5,9 @@
         <button routerLink="/criarPensamento" class="botao">Adicionar pensamento</button>
     </header>
 </section>
-<div class="mural">
+
+<!-- se o tamanho do array 'listaPensamentos' for maior do que 0, a div sai ser renderizada. Se não, vai ser renderizado o elemento com a variável 'semPensamentos, que no caso é o ng-template.'-->
+<div class="mural" *ngIf="listaPensamentos.length > 0, else semPensamentos">
     <div *ngFor="let pensamento of listaPensamentos">
         <!-- componente filho
             Property Binding para que a propriedade 'pensamento' do filho com o @Input() receba as informações da variável local 'pensamento' dentro do *ngFor
@@ -14,6 +16,12 @@
     </div>
 </div>
 
+<!-- o uso de #nomeVariavel dá uma variável de referência para um elemento HTML. -->
+<ng-template #semPensamentos>
+    <div class="ff-inter sem-pensamentos">
+        <p>Ainda não há pensamentos cadastrados!</p>
+    </div>
+</ng-template>
 <!-- let: variável local
      listaPensamentos: atributo criado na classe
 -->
