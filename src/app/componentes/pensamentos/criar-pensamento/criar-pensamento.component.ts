@@ -18,8 +18,4 @@ export class CriarPensamentoComponent {
         alert('Pensamento criado!')
     }
 
-    cancelarPensamento(){
-        alert('Pensamento cancelado!')
-    }
-
 }
