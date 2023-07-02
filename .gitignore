@@ -41,3 +41,5 @@ testem.log
 .DS_Store
 Thumbs.db
 src/app/componentes/pensamentos/pensamento.service.spec.ts
+src/app/componentes/pensamentos/excluir-pensamento/excluir-pensamento.component.spec.ts
+src/app/componentes/pensamentos/editar-pensamento/editar-pensamento.component.spec.ts
