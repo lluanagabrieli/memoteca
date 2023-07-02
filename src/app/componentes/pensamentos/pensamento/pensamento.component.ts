@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Pensamento } from './pensamento';
 
 @Component({
   selector: 'app-pensamento',
@@ -8,7 +9,8 @@ import { Component, Input } from '@angular/core';
 export class PensamentoComponent {
     //o decorator @Input() informa que irá receber informações do pai
     //dumb component: ele não pensa, somente recebe informações de fora. Por possuir esta característica ele também pode ser reutilizado.
-    @Input() pensamento = {
+    @Input() pensamento:Pensamento = {
+        id: 0,
         conteudo: '',
         autoria: '',
         modelo: ''
