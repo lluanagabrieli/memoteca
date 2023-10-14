@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Pensamento } from '../pensamento/pensamento';
 import { PensamentoService } from '../pensamento.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-criar-pensamento',
@@ -10,21 +11,53 @@ import { Router } from '@angular/router';
 })
 export class CriarPensamentoComponent {
 
-    pensamento:Pensamento = {
+    /*pensamento:Pensamento = {
         conteudo: '',
         autoria: '',
         modelo: ''
-    }
+    }*/
+
+    formulario!: FormGroup;
 
     constructor(
         private service: PensamentoService,
-        private router: Router
+        private router: Router,
+        //o FormBuilder é uma classe de serviço responsável pela criação do formulário
+        private formBuilder: FormBuilder
     ) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+
+        //ATRIBUTOS QUE VÃO CONSTAR NO FORMULÁRIO
+
+        /*outra maneira de fazer formulários reativos:
+        * cria um novo formulário e atribui a ele a instância da classe FormGroup
+        * para cada input, atribui a instância da classe FormControl
+
+        ngOnInit(): void {
+            this.formulario = new FormGroup({
+              conteudo: new FormControl(''),
+              autoria: new FormControl(''),
+              modelo: new FormControl('')
+            })
+
+          }*/
+
+
+        /*construtor de formulários do angular: FormBuilder.
+        * utiliza uma sintaxe simplificada;
+        * por “debaixo dos panos”, o FormBuilder vai atribuir os controles aos campos */
+
+        this.formulario = this.formBuilder.group({
+            conteudo: ['Formulário reativo'],
+            autoria: ['Angular'],
+            modelo: ['modelo3']
+        })
+    }
 
     criarPensamento() {
-        this.service.criar(this.pensamento).subscribe(() => {
+        //this.service.criar(this.pensamento).subscribe(() => {
+        this.service.criar(this.formulario.value).subscribe(() => {
         this.router.navigate(['/listarPensamento'])
     })
     }
