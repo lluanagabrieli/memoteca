@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Pensamento } from '../pensamento/pensamento';
 import { PensamentoService } from '../pensamento.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-criar-pensamento',
@@ -49,17 +49,26 @@ export class CriarPensamentoComponent {
         * por “debaixo dos panos”, o FormBuilder vai atribuir os controles aos campos */
 
         this.formulario = this.formBuilder.group({
-            conteudo: ['Formulário reativo'],
-            autoria: ['Angular'],
+            conteudo: ['', Validators.compose([
+                Validators.required,
+                Validators.pattern(/(.|\s)*\S(.|\s)*/)
+            ])],
+            autoria: ['', Validators.compose([
+                Validators.required,
+                Validators.minLength(3)
+            ])],
             modelo: ['modelo3']
         })
     }
 
     criarPensamento() {
-        //this.service.criar(this.pensamento).subscribe(() => {
-        this.service.criar(this.formulario.value).subscribe(() => {
-        this.router.navigate(['/listarPensamento'])
-    })
+        console.log(this.formulario.status)
+        if(this.formulario.valid) {
+            //this.service.criar(this.pensamento).subscribe(() => {
+            this.service.criar(this.formulario.value).subscribe(() => {
+                this.router.navigate(['/listarPensamento'])
+            })
+        }
     }
 
     cancelar() {
