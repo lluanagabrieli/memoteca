@@ -40,6 +40,9 @@
         <div class="mensagem__erro" *ngIf="formulario.get('autoria')?.errors?.['minlength'] && formulario.get('autoria')?.touched">
             Autoria precisa ter no mínimo 3 caracteres!
         </div>
+        <div class="mensagem__erro" *ngIf="formulario.get('autoria')?.errors?.['pattern'] && formulario.get('autoria')?.touched">
+            Permitido somente letras minúsculas!
+        </div>
 
         <!-- SELEÇÃO DOS MODELOS DE CARDS -->
         <label for="modelo">Selecione o modelo do card:</label>
@@ -123,7 +126,12 @@
 
         <!-- BOTÕES-->
         <div class="acoes">
-            <button (click)="criarPensamento()"  class="botao">Salvar</button>
+            <button
+                (click)="criarPensamento()"
+                [ngClass]="habilitarBotao()"
+            >
+             Salvar</button>
+
             <button (click)="cancelar()"  class="botao">Cancelar</button>
         </div>
     </form>
