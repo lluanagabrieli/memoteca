@@ -14,13 +14,19 @@ export class PensamentoService {
     constructor(private http:HttpClient) { }
 
     //método de listagem
-    listar(pagina: number):Observable<Pensamento[]>{
+    listar(pagina: number, filtro: string):Observable<Pensamento[]>{
 
         const itensPorPagina = 6;
 
         let params = new HttpParams()
         .set("_page", pagina)
         .set("_limit", itensPorPagina)
+
+        ///posts?q=internet
+        if(filtro.trim().length > 2){
+            params = params.set("q", filtro);
+        }
+
 
         /*GET /posts?_page=7&_limit=20
         return this.http.get<Pensamento[]>(`${this.API}?_page=${pagina}&_limit=${itensPorPagina}`)*/
