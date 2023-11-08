@@ -4,13 +4,15 @@
       "id": 2,
       "conteudo": "\"Com grandes poderes, vêm grandes responsabilidades.\"",
       "autoria": "Tio Ben",
-      "modelo": "modelo3"
+      "modelo": "modelo3",
+      "favorito": true
     },
     {
+      "id": 3,
       "conteudo": "teste",
       "autoria": "homem aranha",
       "modelo": "modelo1",
-      "id": 3
+      "favorito": false
     }
   ]
 }

@@ -58,7 +58,8 @@ export class CriarPensamentoComponent {
                 Validators.minLength(3),
                 Validators.pattern(/^[a-z\s]+$/) //regex de letras minúsculas
             ])],
-            modelo: ['modelo1']
+            modelo: ['modelo1'],
+            favorito: [false]
         })
     }
 

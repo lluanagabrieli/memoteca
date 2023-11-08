@@ -13,7 +13,8 @@ export class PensamentoComponent {
         id: 0,
         conteudo: '',
         autoria: '',
-        modelo: ''
+        modelo: '',
+        favorito: false
     }
 
     //o ngClass é um uma diretiva de atributos que adiciona classes CSS ao elemento
@@ -23,5 +24,13 @@ export class PensamentoComponent {
             return 'pensamento-g'
         }
         return 'pensamento-p'
+    }
+
+    mudarIconeFavorito(): string{
+        if(this.pensamento.favorito == false){
+            return 'inativo'
+        }else{
+            return 'ativo'
+        }
     }
 }
