@@ -39,6 +39,17 @@ export class PensamentoService {
         return this.http.post<Pensamento>(this.API, pensamento)
     }
 
+    editar(pensamento: Pensamento): Observable<Pensamento> {
+        const url = `${this.API}/${pensamento.id}`
+        return this.http.put<Pensamento>(url, pensamento )
+    }
+
+    mudarFavorito(pensamento: Pensamento): Observable<Pensamento>{
+        pensamento.favorito = !pensamento.favorito
+        return this.editar(pensamento);
+        //para evitar a repetição das linhas 43 e 44, eu chamo o método <editar>
+    }
+
     //função de excluir
     excluir(id: number): Observable<Pensamento> {
         const url = `${this.API}/${id}`
@@ -49,11 +60,6 @@ export class PensamentoService {
     buscarPorId(id: number): Observable<Pensamento> {
         const url = `${this.API}/${id}`
         return this.http.get<Pensamento>(url)
-    }
-
-    editar(pensamento: Pensamento): Observable<Pensamento> {
-        const url = `${this.API}/${pensamento.id}`
-        return this.http.put<Pensamento>(url, pensamento )
     }
 }
 

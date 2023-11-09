@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Pensamento } from './pensamento';
+import { PensamentoService } from '../pensamento.service';
 
 @Component({
   selector: 'app-pensamento',
@@ -17,6 +18,8 @@ export class PensamentoComponent {
         favorito: false
     }
 
+    constructor(private service: PensamentoService){}
+
     //o ngClass é um uma diretiva de atributos que adiciona classes CSS ao elemento
     //ngFor e ngIf adicionam e removem elementos do template, sendo classificados como estruturais
     larguraPensamento(): string{
@@ -32,5 +35,9 @@ export class PensamentoComponent {
         }else{
             return 'ativo'
         }
+    }
+
+    atualizarFavoritos(){
+        this.service.mudarFavorito(this.pensamento).subscribe;
     }
 }
