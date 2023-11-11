@@ -14,7 +14,8 @@ export class PensamentoService {
     constructor(private http:HttpClient) { }
 
     //método de listagem
-    listar(pagina: number, filtro: string):Observable<Pensamento[]>{
+    //passando um parâmetro de favoritos para evitar a repetição de código ao criar uma lista de favoritos
+    listar(pagina: number, filtro: string, favoritos: boolean):Observable<Pensamento[]>{
 
         const itensPorPagina = 6;
 
@@ -27,6 +28,11 @@ export class PensamentoService {
             params = params.set("q", filtro);
         }
 
+        //criando a condicional pois nem sempre será favoritos, então n é necessário inserir o .set no params acima
+        if(favoritos){
+            params = params.set("favorito", true);
+        }
+
 
         /*GET /posts?_page=7&_limit=20
         return this.http.get<Pensamento[]>(`${this.API}?_page=${pagina}&_limit=${itensPorPagina}`)*/
@@ -34,7 +40,7 @@ export class PensamentoService {
         return this.http.get<Pensamento[]>(this.API, { params })
     }
 
-    listarPensamentosFavoritos(pagina: number, filtro: string): Observable<Pensamento[]>{
+    /*listarPensamentosFavoritos(pagina: number, filtro: string): Observable<Pensamento[]>{
         const itensPorPagina = 6;
 
         let params = new HttpParams()
@@ -47,7 +53,9 @@ export class PensamentoService {
         }
 
         return this.http.get<Pensamento[]>(this.API, { params })
-    }
+    }*/
+
+
 
     //método de criação com o método "post"
     criar(pensamento:Pensamento): Observable<Pensamento>{
