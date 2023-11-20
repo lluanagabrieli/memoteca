@@ -26,7 +26,10 @@
         <!-- componente filho
             Property Binding para que a propriedade 'pensamento' do filho com o @Input() receba as informações da variável local 'pensamento' dentro do *ngFor
         -->
-        <app-pensamento [pensamento]="pensamento"></app-pensamento>
+        <app-pensamento
+            [pensamento]="pensamento"
+            [listaFavoritos]="listaFavoritos"
+        ></app-pensamento>
     </div>
 </div>
 
