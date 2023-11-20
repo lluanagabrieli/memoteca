@@ -18,6 +18,8 @@ export class PensamentoComponent {
         favorito: false
     }
 
+    @Input() listaFavoritos: Pensamento[] = [];
+
     constructor(private service: PensamentoService){}
 
     //o ngClass é um uma diretiva de atributos que adiciona classes CSS ao elemento
@@ -38,6 +40,8 @@ export class PensamentoComponent {
     }
 
     atualizarFavoritos(){
-        this.service.mudarFavorito(this.pensamento).subscribe;
+        this.service.mudarFavorito(this.pensamento).subscribe(() => {
+            this.listaFavoritos.splice(this.listaFavoritos.indexOf(this.pensamento), 1)
+        }); //está sendo removido um elemento da lista this.listaFavoritos. O elemento que está sendo removido é o this.pensamento, e a remoção é feita usando o método splice na posição obtida por indexOf(this.pensamento). O segundo argumento do splice é 1, indicando que apenas um elemento será removido.
     }
 }
