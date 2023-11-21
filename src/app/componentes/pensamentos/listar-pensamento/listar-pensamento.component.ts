@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pensamento } from '../pensamento/pensamento';
 import { PensamentoService } from '../pensamento.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-pensamento',
@@ -17,7 +18,9 @@ export class ListarPensamentoComponent implements OnInit {
     favoritos: boolean = false;
     listaFavoritos: Pensamento[] = [];
 
-    constructor(private service: PensamentoService) { }
+    constructor(private service: PensamentoService,
+        private router: Router
+        ) { }
 
     ngOnInit(): void {
       this.service.listar(this.paginaAtual, this.filtro, this.favoritos).subscribe((listaPensamentos) => {
@@ -45,6 +48,20 @@ export class ListarPensamentoComponent implements OnInit {
             .subscribe(listaPensamentos => {
                 this.listaPensamentos = listaPensamentos
             })
+    }
+
+    recarregarComponente(){
+        //location.reload(); : recarrega toda a página
+        //onSameUrlNavigation: essa propriedade diz que quando eu estiver navegando na mesma URL, preciso dizer ao Angular o que eu quero que aconteça
+        this.favoritos = false;
+        this.paginaAtual = 1;
+
+        //não reutilizar o componente quando a rota for a mesma
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        //recarrega o componente mesmo se a url for a mesma
+        this.router.onSameUrlNavigation = 'reload';
+        //navega para a url atual
+        this.router.navigate([this.router.url])
     }
 
     meusFavoritos(){

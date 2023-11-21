@@ -6,13 +6,6 @@
       "autoria": "Tio Ben",
       "modelo": "modelo3",
       "favorito": false
-    },
-    {
-      "id": 3,
-      "conteudo": "teste",
-      "autoria": "homem aranha",
-      "modelo": "modelo1",
-      "favorito": false
     }
   ]
 }
